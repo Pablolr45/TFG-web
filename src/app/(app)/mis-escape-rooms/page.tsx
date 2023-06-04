@@ -16,7 +16,7 @@ useEffect(()=> {
       <section className="relative p-1">
         <div
           onClick={() => setPage(page - 1)}
-          className="bg-blue-800 z-20 top-[calc(50%-1.25rem)] left-[-1rem] text-white font-bold absolute p-2 w-10 h-10 flex items-center justify-center rounded-full"
+          className="bg-blue-700 z-20 top-[calc(50%-1.25rem)] left-[-1rem] text-white font-bold absolute p-2 w-10 h-10 flex items-center justify-center rounded-full"
         >{`<`}</div>
         <div
           onClick={() => setPage(page + 1)}
