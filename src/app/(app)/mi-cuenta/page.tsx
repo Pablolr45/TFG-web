@@ -32,20 +32,23 @@ const MiCuenta = () => {
           <Avatar
             sx={{ width: 100, height: 100 }}
             className="bg-virtual-300 font-bold text-xl"
-            alt="Pablo López Roda"
-          >
+            alt="Pablo López Roda">
             PL
           </Avatar>
           <div>
             <TextWithLabel label="Nombre y Apellido">
-              Pablo López Roda
+              Pablo
             </TextWithLabel>
-            <TextWithLabel label="Email">pablo@gmail.com</TextWithLabel>
+            <TextWithLabel label="Apellidos">
+              López Roda
+              </TextWithLabel>
+              <TextWithLabel label="Asignatura">
+              Desarrollo Entorno Servidor
+              </TextWithLabel>
             <Button
               onClick={handleClickOpen}
               variant="contained"
-              endIcon={<Edit />}
-            >
+              endIcon={<Edit />}>
               Editar
             </Button>
           </div>
@@ -54,18 +57,20 @@ const MiCuenta = () => {
 
       <ContainerBox variants="secondary">
         <div className="grid grid-cols-[min-content_minmax(0,1fr)] items-center gap-3">
-          <Avatar
+          {/* <Avatar
             sx={{ width: 100, height: 100 }}
             className="bg-virtual-300 font-bold text-xl"
             alt="Pablo López Roda"
           >
             PL
-          </Avatar>
+          </Avatar> */}
           <div>
-            <TextWithLabel label="Nombre y Apellido">
-              Pablo López Roda
+            <TextWithLabel label="Email">
+              pablo@gmail.com
             </TextWithLabel>
-            <TextWithLabel label="Email">pablo@gmail.com</TextWithLabel>
+            <TextWithLabel label="Contraseña">
+              **********
+            </TextWithLabel>
             <Button
               onClick={handleClickOpen}
               variant="contained"
@@ -77,19 +82,38 @@ const MiCuenta = () => {
         </div>
       </ContainerBox>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Subscribe</DialogTitle>
+        <DialogTitle>Editar</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            To subscribe to this website, please enter your email address here.
-            We will send updates occasionally.
+            Campos a editar
           </DialogContentText>
           <TextField
             autoFocus
             margin="dense"
             id="name"
-            autocomplete="off"
-            label="Email Address"
-            type="email"
+            autoComplete="off"
+            label="Nombre"
+            type="text"
+            fullWidth
+            variant="standard"
+          />
+           <TextField
+            autoFocus
+            margin="dense"
+            id="lastname"
+            autoComplete="off"
+            label="Apellidos"
+            type="text"
+            fullWidth
+            variant="standard"
+          />
+           <TextField
+            autoFocus
+            margin="dense"
+            id="subject"
+            autoComplete="off"
+            label="Asignatura"
+            type="text"
             fullWidth
             variant="standard"
           />
