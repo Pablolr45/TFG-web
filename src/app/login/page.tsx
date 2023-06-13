@@ -24,6 +24,7 @@ export default function Login() {
             variant="standard"
             name="email"
             id="email"
+            autoComplete="off"
             label="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}/>
@@ -32,6 +33,7 @@ export default function Login() {
             size="small"
             label="Contraseña"
             variant="standard"
+            autoComplete="off"
             name="password"
             id="password"
             value={password}

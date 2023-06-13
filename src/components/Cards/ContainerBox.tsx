@@ -11,19 +11,21 @@ const Span: Record<Span, string>={
     1: "col-span-1",
     2:"col-span-2",
     3:"col-span-3",
-} 
+}
 
 
 export default function Containerbox({
   children,
   variants = "primary",
-  span= 1
+  span= 1,
+  flexCol=false
 }: {
   children: ReactNode;
   variants?: Variants;
   span?: Span;
+  flexCol?: boolean
 }) {
   return (
-    <div className={`p-2 rounded-md ${Span[span]} ${Variants[variants]}`}>{children}</div>
+    <div className={`p-5 shadow-md flex ${flexCol ? 'flex-col': '' } gap-2 rounded-md ${Span[span]} ${Variants[variants]}`}>{children}</div>
   );
 }

@@ -9,6 +9,7 @@ import Typography from "@mui/material/Typography";
 import General from "@/components/Forms/General";
 import Configuracion from "@/components/Forms/Configuracion";
 import Presentacion from "@/components/Forms/Presentacion";
+import Recursos from "@/components/Forms/Recursos";
 
 const steps = ["General", "Configuración", "Presentación", "Recursos"];
 
@@ -25,22 +26,47 @@ export default function EscapeRoomLayout({}) {
     puntuacion: true,
     cuentaAtras: true,
     minutos: 0,
-    inicio: {
+    recursos: ["Flashlight", "Notebook"],
+    presentacionInicial: {
       tipo: "imagen",
       url: "",
     },
-    final: {
+    presentacionFinal: {
       tipo: "imagen",
       url: "",
     },
   });
-
+  console.log(escapeRoom);
   const handleEscapeRoom = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEscapeRoom({ ...escapeRoom, [e.target.name]: e.target.value });
   };
 
   const handleEscapeRoomToggle = <T,>(name: string, value: T) => {
     setEscapeRoom({ ...escapeRoom, [name]: value });
+  };
+  const handleEscapeRoomTogglePresentacion = <T,>(
+    name: string,
+    value: string,
+    option: 1 | 2
+  ) => {
+    if (option === 1) {
+      setEscapeRoom({
+        ...escapeRoom,
+        presentacionInicial: {
+          ...escapeRoom.presentacionInicial,
+          [name]: value,
+        },
+      });
+    }
+    if (option === 2) {
+      setEscapeRoom({
+        ...escapeRoom,
+        presentacionFinal: {
+          ...escapeRoom.presentacionFinal,
+          [name]: value,
+        },
+      });
+    }
   };
 
   const totalSteps = () => {
@@ -100,7 +126,7 @@ export default function EscapeRoomLayout({}) {
           </Step>
         ))}
       </Stepper>
-      <div>
+      <div className="py-5 flex flex-col gap-2">
         {allStepsCompleted() ? (
           <React.Fragment>
             <Typography sx={{ mt: 2, mb: 1 }}>
@@ -124,16 +150,21 @@ export default function EscapeRoomLayout({}) {
               <Configuracion
                 cuentaAtras={escapeRoom.cuentaAtras}
                 puntuacion={escapeRoom.puntuacion}
+                minutos={escapeRoom.minutos}
+                restaPista={escapeRoom.restaPistas}
+                handleEscapeRoom={handleEscapeRoom}
                 handleEscapeRoomToggle={handleEscapeRoomToggle<boolean>}
               />
             )}
             {activeStep === 2 && (
               <Presentacion
-                cuentaAtras={escapeRoom.cuentaAtras}
-                puntuacion={escapeRoom.puntuacion}
-                handleEscapeRoomToggle={handleEscapeRoomToggle<boolean>}
+                presentacionInicial={escapeRoom.presentacionInicial}
+                presentacionFinal={escapeRoom.presentacionFinal}
+                handleEscapeRoomToggle={handleEscapeRoomTogglePresentacion}
+                handleEscapeRoom={handleEscapeRoom}
               />
             )}
+            {activeStep === 3 && <Recursos recursos={escapeRoom.recursos} />}
             <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
               <Button
                 color="inherit"

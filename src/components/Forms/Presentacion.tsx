@@ -2,44 +2,58 @@ import { TextField, ToggleButton, ToggleButtonGroup } from "@mui/material";
 import Containerbox from "../Cards/ContainerBox";
 import { ChangeEvent } from "react";
 
-export default function Configuracion({
-  cuentaAtras,
-  puntuacion,
+export default function Presentacion({
+  presentacionInicial,
+  presentacionFinal,
+  handleEscapeRoom,
   handleEscapeRoomToggle,
 }: {
-  cuentaAtras: boolean;
-  puntuacion: boolean;
-  handleEscapeRoomToggle: (name: string, value: boolean) => void;
+  presentacionInicial: PresentacionInicial;
+  presentacionFinal: PresentacionFinal;
+  handleEscapeRoom: (e: ChangeEvent<HTMLInputElement>) => void;
+  handleEscapeRoomToggle: (name: string, value: string, option: 1 | 2) => void;
 }) {
   return (
-    <form>
+    <form className="flex flex-col gap-2">
       <Containerbox variants="secondary">
         <ToggleButtonGroup
           color="primary"
-          value={cuentaAtras}
+          value={presentacionInicial.tipo}
           exclusive
-          onChange={(e, value) =>
-            handleEscapeRoomToggle("cuentaAtras", value)
-          }
+          size="small"
+          onChange={(e, value) => handleEscapeRoomToggle("tipo", value, 1)}
           aria-label="Platform"
         >
-          <ToggleButton value={true}>Con cuenta atrás</ToggleButton>
-          <ToggleButton value={false}>Sin cuenta atrás</ToggleButton>
+          <ToggleButton value={"imagen"}>Imagen</ToggleButton>
+          <ToggleButton value={"video"}>Video</ToggleButton>
         </ToggleButtonGroup>
+        <TextField
+          value={presentacionInicial.url}
+          size="small"
+          name="urlPresentacionInicial"
+          onChange={(e) => handleEscapeRoomToggle("url", e.target.value, 1)}
+          label="Url del recurso"
+        />
       </Containerbox>
       <Containerbox variants="secondary">
         <ToggleButtonGroup
           color="primary"
-          value={puntuacion}
+          value={presentacionFinal.tipo}
+          size="small"
           exclusive
-          onChange={(e, value) =>
-            handleEscapeRoomToggle("puntuacion", value)
-          }
+          onChange={(e, value) => handleEscapeRoomToggle("tipo", value, 2)}
           aria-label="Platform"
         >
-          <ToggleButton value={true}>Con puntuacion</ToggleButton>
-          <ToggleButton value={false}>Sin puntuacion</ToggleButton>
+          <ToggleButton value={"imagen"}>Imagen</ToggleButton>
+          <ToggleButton value={"video"}>Video</ToggleButton>
         </ToggleButtonGroup>
+        <TextField
+          size="small"
+          value={presentacionFinal.url}
+          onChange={(e) => handleEscapeRoomToggle("url", e.target.value, 2)}
+          name="urlPresentacionFinal"
+          label="Url del recurso"
+        />
       </Containerbox>
     </form>
   );
