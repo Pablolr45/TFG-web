@@ -76,7 +76,7 @@ export default function HorizontalNonLinearStepper() {
         {allStepsCompleted() ? (
           <React.Fragment>
             <Typography sx={{ mt: 2, mb: 1 }}>
-              All steps completed - you&apos;re finished
+              Todos los pasos están completos
             </Typography>
             <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
               <Box sx={{ flex: "1 1 auto" }} />
@@ -96,11 +96,11 @@ export default function HorizontalNonLinearStepper() {
                 onClick={handleBack}
                 sx={{ mr: 1 }}
               >
-                Back
+                Atrás
               </Button>
               <Box sx={{ flex: "1 1 auto" }} />
               <Button onClick={handleNext} sx={{ mr: 1 }}>
-                Next
+                Siguiente
               </Button>
               {activeStep !== steps.length &&
                 (completed[activeStep] ? (

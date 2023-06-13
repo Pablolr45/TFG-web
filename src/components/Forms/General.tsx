@@ -12,7 +12,7 @@ export default function General({
   handleEscapeRoom: (e: ChangeEvent<HTMLInputElement>) => void;
 }) {
   return (
-    <form>
+    <form className="flex flex-col gap-2">
       <Containerbox variants="secondary">
         <TextField
           label="Título"
@@ -30,7 +30,6 @@ export default function General({
           name="subtitulo"
           value={subtitulo}
         />
-
       </Containerbox>
       <Containerbox variants="secondary">
         
