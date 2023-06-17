@@ -15,11 +15,15 @@ import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import Image from "next/image";
 import Link from "next/link";
-
+import { useRouter } from "next/navigation";
 const pages = ["Mis Escape Rooms"];
-const settings = ["Mi Perfil", "Logout"];
+const settings = [
+  { label: "Mi Cuenta", url: "mi-cuenta" },
+  { label: "Logout", url: "login" },
+];
 
 function ResponsiveAppBar() {
+  const router = useRouter();
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -40,6 +44,14 @@ function ResponsiveAppBar() {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const handleClick = () => {
+    router.push("mi-cuenta");
+  };
+
+  const handleClickEscape = () => {
+    router.push("mis-escape-rooms");
   };
 
   return (
@@ -115,7 +127,7 @@ function ResponsiveAppBar() {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
+                onClick={handleClickEscape}
                 sx={{
                   my: 2,
                   mx: 1,
@@ -152,8 +164,10 @@ function ResponsiveAppBar() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                <MenuItem key={setting.label} onClick={handleCloseUserMenu}>
+                  <Typography onClick={()=>router.push(`/${setting.url}`)} textAlign="center">
+                    {setting.label}
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>

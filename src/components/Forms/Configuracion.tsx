@@ -6,62 +6,70 @@ export default function Configuracion({
   cuentaAtras,
   puntuacion,
   minutos,
-  restaPista,
+  restaPistas,
   handleEscapeRoom,
   handleEscapeRoomToggle,
 }: {
   cuentaAtras: boolean;
   puntuacion: boolean;
   minutos: number;
-  restaPista: number;
+  restaPistas: number;
   handleEscapeRoom: (e: ChangeEvent<HTMLInputElement>) => void;
   handleEscapeRoomToggle: (name: string, value: boolean) => void;
 }) {
   return (
     <form className="flex flex-col gap-2">
-      <Containerbox variants="secondary">
-        <ToggleButtonGroup
-          color="primary"
-          value={cuentaAtras}
-          exclusive
-          size="small"
-          onChange={(e, value) => handleEscapeRoomToggle("cuentaAtras", value)}
-          aria-label="Platform"
-        >
-          <ToggleButton value={true}>Con cuenta atrás</ToggleButton>
-          <ToggleButton value={false}>Sin cuenta atrás</ToggleButton>
-        </ToggleButtonGroup>
-        {cuentaAtras && (
-          <TextField
-            value={minutos}
+      <Containerbox flexCol title="CUENTA ATRÁS" variants="secondary">
+        <div className="flex flex-row gap-2">
+          <ToggleButtonGroup
+            color="primary"
+            value={cuentaAtras}
+            exclusive
             size="small"
-            label="Minutos"
-            name="minutos"
-            onChange={handleEscapeRoom}
-          />
-        )}
+            onChange={(e, value) =>
+              handleEscapeRoomToggle("cuentaAtras", value)
+            }
+            aria-label="Platform"
+          >
+            <ToggleButton value={true}>Con cuenta atrás</ToggleButton>
+            <ToggleButton value={false}>Sin cuenta atrás</ToggleButton>
+          </ToggleButtonGroup>
+          {cuentaAtras && (
+            <TextField
+              value={minutos}
+              size="small"
+              label="Minutos"
+              name="minutos"
+              type="Number"
+              onChange={handleEscapeRoom}
+            />
+          )}
+        </div>
       </Containerbox>
-      <Containerbox variants="secondary">
-        <ToggleButtonGroup
-          color="primary"
-          value={puntuacion}
-          exclusive
-          size="small"
-          onChange={(e, value) => handleEscapeRoomToggle("puntuacion", value)}
-          aria-label="Platform"
-        >
-          <ToggleButton value={true}>Con puntuacion</ToggleButton>
-          <ToggleButton value={false}>Sin puntuacion</ToggleButton>
-        </ToggleButtonGroup>
-        {puntuacion && (
-          <TextField
-            value={restaPista}
+      <Containerbox flexCol title="PUNTUACIÓN" variants="secondary">
+        <div className="flex flex-row gap-2">
+          <ToggleButtonGroup
+            color="primary"
+            value={puntuacion}
+            exclusive
             size="small"
-            label="Resta Pista"
-            name="restaPista"
-            onChange={handleEscapeRoom}
-          />
-        )}
+            onChange={(e, value) => handleEscapeRoomToggle("puntuacion", value)}
+            aria-label="Platform"
+          >
+            <ToggleButton value={true}>Con puntuacion</ToggleButton>
+            <ToggleButton value={false}>Sin puntuacion</ToggleButton>
+          </ToggleButtonGroup>
+          {puntuacion && (
+            <TextField
+              value={restaPistas}
+              size="small"
+              label="Resta Pista"
+              name="restaPistas"
+              type="Number"
+              onChange={handleEscapeRoom}
+            />
+          )}
+        </div>
       </Containerbox>
     </form>
   );

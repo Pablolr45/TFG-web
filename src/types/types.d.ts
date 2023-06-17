@@ -1,4 +1,5 @@
 interface EscapeRoom {
+  _id?: string;
   titulo: string;
   subtitulo: string;
   sala: string;
