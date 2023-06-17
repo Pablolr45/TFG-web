@@ -10,14 +10,27 @@ import General from "@/components/Forms/General";
 import Configuracion from "@/components/Forms/Configuracion";
 import Presentacion from "@/components/Forms/Presentacion";
 import Recursos from "@/components/Forms/Recursos";
+import { EscapeRoomService } from "@/services/escape-room.service";
+import { useParams } from "next/navigation";
 
 const steps = ["General", "Configuración", "Presentación", "Recursos"];
 
 export default function EscapeRoomLayout({}) {
   const [activeStep, setActiveStep] = React.useState(0);
+  const { id } = useParams();
   const [completed, setCompleted] = React.useState<{
     [k: number]: boolean;
   }>({});
+  React.useEffect(() => {
+    new EscapeRoomService()
+      .getById(id)
+      .then((response) => {
+        return response.json();
+      })
+      .then((response) => {
+        setEscapeRoom(response);
+      });
+  }, []);
   const [escapeRoom, setEscapeRoom] = React.useState<EscapeRoom>({
     titulo: "",
     subtitulo: "",
@@ -115,6 +128,10 @@ export default function EscapeRoomLayout({}) {
     setCompleted({});
   };
 
+  const handleSala = (value: string) => {
+    setEscapeRoom({ ...escapeRoom, sala: value });
+  };
+
   return (
     <Box sx={{ width: "100%" }}>
       <Stepper nonLinear activeStep={activeStep}>
@@ -144,6 +161,8 @@ export default function EscapeRoomLayout({}) {
                 handleEscapeRoom={handleEscapeRoom}
                 titulo={escapeRoom.titulo}
                 subtitulo={escapeRoom.subtitulo}
+                sala={escapeRoom.sala}
+                handleSala={handleSala}
               />
             )}
             {activeStep === 1 && (
@@ -151,7 +170,7 @@ export default function EscapeRoomLayout({}) {
                 cuentaAtras={escapeRoom.cuentaAtras}
                 puntuacion={escapeRoom.puntuacion}
                 minutos={escapeRoom.minutos}
-                restaPista={escapeRoom.restaPistas}
+                restaPistas={escapeRoom.restaPistas}
                 handleEscapeRoom={handleEscapeRoom}
                 handleEscapeRoomToggle={handleEscapeRoomToggle<boolean>}
               />

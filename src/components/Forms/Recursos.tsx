@@ -6,7 +6,7 @@ import Recurso from "./Recurso";
 export default function Recursos({ recursos }: { recursos: Array<any> }) {
   return (
     <form className="flex flex-col gap-2 h-full">
-      <Containerbox flexCol variants="secondary">
+      <Containerbox flexCol title="RECURSOS" variants="secondary">
         <div className="flex justify-end">
           <Button startIcon={<AddIcon />}>Añadir</Button>
         </div>
