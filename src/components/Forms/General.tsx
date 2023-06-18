@@ -1,6 +1,6 @@
 import { TextField } from "@mui/material";
 import Containerbox from "../Cards/ContainerBox";
-import { ChangeEvent } from "react";
+import { ChangeEvent, useEffect } from "react";
 import EscapeRoomList from "../EscapeRoomLists/EscapeRoomList";
 
 export default function General({

@@ -1,4 +1,5 @@
 "use client";
+import { AuthContext } from "@/providers/AuthProvider";
 import { ToastContext } from "@/providers/ToastProvider";
 import { AuthService } from "@/services/auth.service";
 import { Button, TextField } from "@mui/material";
@@ -8,6 +9,7 @@ import { useContext, useState } from "react";
 export default function Login() {
   const { setOpenToast, setMessageToast, setSeverityToast } =
     useContext<ToastContext>(ToastContext);
+  const { token, handleToken } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
@@ -25,6 +27,7 @@ export default function Login() {
         setSeverityToast("success");
         setMessageToast("Bienvenido!");
         setOpenToast(true);
+        handleToken(response.access_token);
         router.push("/mis-escape-rooms");
       })
       .catch((reason) => {

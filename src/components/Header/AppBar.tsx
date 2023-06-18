@@ -16,14 +16,13 @@ import AdbIcon from "@mui/icons-material/Adb";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { AuthContext } from "@/providers/AuthProvider";
 const pages = ["Mis Escape Rooms"];
-const settings = [
-  { label: "Mi Cuenta", url: "mi-cuenta" },
-  { label: "Logout", url: "login" },
-];
+const settings = [{ label: "Mi Cuenta", url: "mi-cuenta" }];
 
 function ResponsiveAppBar() {
   const router = useRouter();
+  const { logout } = React.useContext(AuthContext);
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -46,10 +45,6 @@ function ResponsiveAppBar() {
     setAnchorElUser(null);
   };
 
-  const handleClick = () => {
-    router.push("mi-cuenta");
-  };
-
   const handleClickEscape = () => {
     router.push("mis-escape-rooms");
   };
@@ -58,7 +53,7 @@ function ResponsiveAppBar() {
     <AppBar sx={{ backgroundColor: "white" }} position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Link className="mr-5" href={"/"}>
+          <Link className="mr-5" href={"mis-escape-rooms"}>
             <Image src={"/logo.png"} alt="logo" width={100} height={100} />
           </Link>
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -165,11 +160,19 @@ function ResponsiveAppBar() {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting.label} onClick={handleCloseUserMenu}>
-                  <Typography onClick={()=>router.push(`/${setting.url}`)} textAlign="center">
+                  <Typography
+                    onClick={() => router.push(`/${setting.url}`)}
+                    textAlign="center"
+                  >
                     {setting.label}
                   </Typography>
                 </MenuItem>
               ))}
+              <MenuItem onClick={handleCloseUserMenu}>
+                <Typography onClick={() => logout()} textAlign="center">
+                  Logout
+                </Typography>
+              </MenuItem>
             </Menu>
           </Box>
         </Toolbar>
