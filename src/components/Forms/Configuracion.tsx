@@ -1,6 +1,6 @@
 import { TextField, ToggleButton, ToggleButtonGroup } from "@mui/material";
 import Containerbox from "../Cards/ContainerBox";
-import { ChangeEvent } from "react";
+import { ChangeEvent, useEffect } from "react";
 
 export default function Configuracion({
   cuentaAtras,
@@ -9,6 +9,7 @@ export default function Configuracion({
   restaPistas,
   handleEscapeRoom,
   handleEscapeRoomToggle,
+  handleComplete,
 }: {
   cuentaAtras: boolean;
   puntuacion: boolean;
@@ -16,7 +17,16 @@ export default function Configuracion({
   restaPistas: number;
   handleEscapeRoom: (e: ChangeEvent<HTMLInputElement>) => void;
   handleEscapeRoomToggle: (name: string, value: boolean) => void;
+  handleComplete: (complete: boolean) => void;
 }) {
+  useEffect(() => {
+    const validate = (): boolean => {
+      if (cuentaAtras && minutos == 0) return false;
+      if (puntuacion && restaPistas == 0) return false;
+      return true;
+    };
+    handleComplete(validate());
+  }, [minutos, cuentaAtras, puntuacion, restaPistas, handleComplete]);
   return (
     <form className="flex flex-col gap-2">
       <Containerbox flexCol title="CUENTA ATRÁS" variants="secondary">

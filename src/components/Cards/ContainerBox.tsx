@@ -30,7 +30,7 @@ export default function Containerbox({
     <div
       className={`p-5 shadow-md flex ${
         flexCol ? "flex-col" : ""
-      } gap-2 rounded-md ${Span[span]} ${Variants[variants]}`}
+      } gap-2 containerBox rounded-md ${Span[span]} ${Variants[variants]}`}
     >
       {title && (
         <h1 className="text-virtual-200 text-xl mb-2">

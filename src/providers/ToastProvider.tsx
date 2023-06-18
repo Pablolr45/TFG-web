@@ -14,7 +14,17 @@ export interface ToastContext {
   setMessageToast: Dispatch<SetStateAction<string>>;
   setSeverityToast: Dispatch<SetStateAction<Severity>>;
 }
-export const ToastContext = createContext<ToastContext>({});
+export const ToastContext = createContext<ToastContext>({
+  setOpenToast: function (value: SetStateAction<boolean>): void {
+    throw new Error("Function not implemented.");
+  },
+  setMessageToast: function (value: SetStateAction<string>): void {
+    throw new Error("Function not implemented.");
+  },
+  setSeverityToast: function (value: SetStateAction<Severity>): void {
+    throw new Error("Function not implemented.");
+  }
+});
 export default function ToastProvider({ children }: { children: ReactNode }) {
   const [openToast, setOpenToast] = useState(false);
   const [messageToast, setMessageToast] = useState("");

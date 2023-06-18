@@ -1,12 +1,14 @@
 "use client";
 import Card from "@/components/Cards/Card";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import { Button } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { EscapeRoomService } from "@/services/escape-room.service";
+import { AuthContext } from "@/providers/AuthProvider";
 
 export default function MisEscapesRooms() {
+  const { token } = useContext(AuthContext);
   const router = useRouter();
   const [page, setPage] = useState(0);
   const carrousel = useRef<HTMLDivElement>(null);
@@ -20,7 +22,7 @@ export default function MisEscapesRooms() {
       .then((response) => {
         setEscapeRooms(response);
       });
-  });
+  }, []);
   useEffect(() => {
     if (carrousel.current !== null) {
       const width = carrousel.current.clientWidth;
@@ -30,10 +32,7 @@ export default function MisEscapesRooms() {
     }
   }, [page]);
   const handleClick = () => {
-    router.push("escape-room/5");
-  };
-  const handleClickEscape = () => {
-    router.push("escape-room/5");
+    router.push("escape-room/nuevo");
   };
   return (
     <main className="p-5">
@@ -73,8 +72,8 @@ export default function MisEscapesRooms() {
                 return (
                   <Card
                     key={escapeRoom._id}
-                    onClick={()=>{
-                      router.push(`/escape-room/${escapeRoom._id}`)
+                    onClick={() => {
+                      router.push(`/escape-room/${escapeRoom._id}`);
                     }}
                     title={escapeRoom.titulo}
                   ></Card>
