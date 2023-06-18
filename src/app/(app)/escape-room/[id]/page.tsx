@@ -38,7 +38,7 @@ export default function EscapeRoomLayout({}) {
           setEscapeRoom(response);
         });
     }
-  }, []);
+  }, [id]);
   const [escapeRoom, setEscapeRoom] = React.useState<EscapeRoom>({
     titulo: "",
     subtitulo: "",

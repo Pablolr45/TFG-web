@@ -56,7 +56,7 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
     if (token !== null) {
       Cookies.set("token", token);
       const decodedToken = JOSE.decodeJwt(token);
-      setUser(decodedToken);
+      setUser((decodedToken as unknown) as User);
       setToken(token);
     }
   };
