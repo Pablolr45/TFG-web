@@ -26,8 +26,9 @@ export default class World {
     this.camera.perspectiveCamera.position.z = 15;
     this.resources = this.experience.resources;
     this.resources.on("ready", () => {
-      console.log("Cargado")
+      console.log("Cargado");
       this.enviroment = new Enviroment();
+      console.log(this.scene.children);
       this.room = new Room();
     });
   }

@@ -1,26 +1,26 @@
-import { EventEmitter } from "events";
+import * as THREE from "three";
+import Experience from "../Experience";
+import Resources from "../Utils/Resources";
 
-export default class Time extends EventEmitter {
-  start: number;
-  current: number;
-  elapse: number;
-  delta: number;
+export default class Room {
+  experience: Experience;
+  scene: THREE.Scene;
+  resources: Resources;
+  room: { [key: string]: any };
+  actualRoom: THREE.Object3D<Event>;
   constructor() {
-    super();
-    this.start = Date.now();
-    this.current = this.start;
-    this.elapse = 0;
-    this.delta = 16;
-    this.update();
+    this.experience = new Experience();
+    this.scene = this.experience.scene;
+    this.resources = this.experience.resources;
+    this.room = this.resources.items.room;
+    this.actualRoom = this.room.scene;
+    const geometry = new THREE.BoxGeometry(1, 1, 1);
+    const material = new THREE.MeshBasicMaterial({ color: 0xff0 });
+    const cube = new THREE.Mesh(geometry, material);
+    this.scene.add(cube);
+    this.setModel();
   }
-  update() {
-    const currentTime = Date.now();
-    this.delta = currentTime - this.current;
-    this.current = currentTime;
-    this.elapse = this.current - this.start;
-    this.emit("update");
-    window.requestAnimationFrame(() => {
-      this.update();
-    });
+  setModel() {
+    this.scene.add(this.actualRoom);
   }
 }

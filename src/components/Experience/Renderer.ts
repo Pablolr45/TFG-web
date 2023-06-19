@@ -45,7 +45,6 @@ export default class Renderer {
       });
     }
     this.renderer.render(this.scene, this.camera.perspectiveCamera);
-    console.log("render");
     this.selected = [];
   }
 }
