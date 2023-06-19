@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.MuiInputBase-input {
+  @apply bg-white rounded-md;
+}
+.MuiInputLabel-root {
+  @apply bg-white rounded-t-md px-2;
+}
+.MuiButtonBase-root:not(.MuiStepButton-root) {
+  @apply bg-white;
+}
+div.containerBox .MuiButtonBase-root:not(.MuiStepButton-root) {
+  @apply bg-transparent;
+}
+.MuiButtonBase-root:not(.MuiStepButton-root).Mui-selected {
+  @apply bg-blue-300;
+}
