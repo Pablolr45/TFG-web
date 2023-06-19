@@ -9,7 +9,6 @@ import Typography from "@mui/material/Typography";
 import General from "@/components/Forms/General";
 import Configuracion from "@/components/Forms/Configuracion";
 import Presentacion from "@/components/Forms/Presentacion";
-import Recursos from "@/components/Forms/Recursos";
 import { EscapeRoomService } from "@/services/escape-room.service";
 import { useParams, useRouter } from "next/navigation";
 import { ToastContext } from "@/providers/ToastProvider";
@@ -47,7 +46,6 @@ export default function EscapeRoomLayout({}) {
     puntuacion: true,
     cuentaAtras: true,
     minutos: 0,
-    recursos: ["Flashlight", "Notebook"],
     presentacionInicial: {
       tipo: "imagen",
       url: "",
@@ -232,7 +230,7 @@ export default function EscapeRoomLayout({}) {
               handleComplete={handleComplete}
             />
           )}
-          {activeStep === 3 && <Recursos recursos={escapeRoom.recursos} />}
+
           <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
             <Button
               color="inherit"
