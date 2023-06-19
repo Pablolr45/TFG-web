@@ -3,6 +3,7 @@ import { AuthContext } from "@/providers/AuthProvider";
 import { ToastContext } from "@/providers/ToastProvider";
 import { AuthService } from "@/services/auth.service";
 import { Button, TextField } from "@mui/material";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
 
@@ -40,7 +41,9 @@ export default function Login() {
   return (
     <main className="flex justify-center items-center min-h-screen  bg-gradient-to-b from-virtual-50 to-virtual-900">
       <section className="bg-white grid grid-cols-2 rounded-md w-1/2 h-96 mt-2 py-3 space-y-5">
-        <div></div>
+        <div className="flex flex-col justify-center items-center">
+          <Image src={"/logo.png"} alt="logo" width={250} height={250} />
+        </div>
         <form
           className="flex flex-col p-4 gap-4 justify-center items-center"
           action=""

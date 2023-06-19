@@ -23,3 +23,14 @@ div.containerBox .MuiButtonBase-root:not(.MuiStepButton-root) {
   --tw-bg-opacity: 1 !important;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity)) !important;
 }
+.experience {
+  top: 0;
+  left: 0;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+}
+canvas.experience {
+  width: 100%;
+  height: 100%;
+}

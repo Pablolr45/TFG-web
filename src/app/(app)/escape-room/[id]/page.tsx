@@ -14,6 +14,7 @@ import { useParams, useRouter } from "next/navigation";
 import { ToastContext } from "@/providers/ToastProvider";
 import { useContext, useState } from "react";
 import StepperLabels from "@/components/Stepper/StepperLabel";
+import Experience from "@/components/Experience/Experience";
 
 const steps = ["General", "Configuración", "Presentación"];
 
@@ -26,6 +27,8 @@ export default function EscapeRoomLayout({}) {
   }>({
     3: true,
   });
+  const experienceContainer = React.useRef<HTMLCanvasElement | null>(null);
+  const experienceCanvas = React.useRef<HTMLCanvasElement | null>(null);
   React.useEffect(() => {
     if (id !== "nuevo") {
       new EscapeRoomService()
@@ -92,6 +95,16 @@ export default function EscapeRoomLayout({}) {
         setMessageToast("Escape Room actualizado");
         setOpenToast(true);
       });
+  };
+  const handle3d = () => {
+    if (
+      experienceCanvas.current !== null &&
+      experienceContainer.current !== null
+    ) {
+      new Experience(experienceCanvas.current);
+      experienceContainer.current.style.zIndex = "10";
+      experienceCanvas.current.style.zIndex = "10";
+    }
   };
   const deleteEscapeRoom = () => {
     new EscapeRoomService()
@@ -252,8 +265,14 @@ export default function EscapeRoomLayout({}) {
             ) : (
               ""
             )}
+            <div ref={experienceContainer} className="experience">
+              <canvas className="experience" ref={experienceCanvas}></canvas>
+            </div>
             {id !== "nuevo" ? (
               <div className="flex space-x-2">
+                <Button onClick={handle3d} sx={{ mr: 1 }}>
+                  Visor 3D
+                </Button>
                 <Button onClick={deleteEscapeRoom} sx={{ mr: 1 }}>
                   Delete
                 </Button>
