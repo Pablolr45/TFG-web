@@ -217,11 +217,6 @@ export default function EscapeRoomLayout({}) {
     setCompleted(newCompleted);
   };
 
-  const handleReset = () => {
-    setActiveStep(0);
-    setCompleted({});
-  };
-
   const handleSala = (value: string) => {
     setEscapeRoom({ ...escapeRoom, sala: value });
   };

@@ -25,7 +25,7 @@ export const AuthContext = createContext<AuthContext>({
   logout: function (): void {
     throw new Error("Function not implemented.");
   },
-  user: null,
+  user: null, 
 });
 export default function AuthProvider({ children }: { children: ReactNode }) {
   const router = useRouter();
