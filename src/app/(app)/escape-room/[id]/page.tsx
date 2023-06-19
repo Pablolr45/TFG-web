@@ -104,6 +104,27 @@ export default function EscapeRoomLayout({}) {
       new Experience(experienceCanvas.current);
       experienceContainer.current.style.zIndex = "10";
       experienceCanvas.current.style.zIndex = "10";
+      const close = document.createElement("div");
+      close.style.position = "absolute";
+      close.style.top = "10px";
+      close.style.right = "10px";
+      close.style.borderRadius = "8px";
+      close.style.padding = "10px";
+      close.style.backgroundColor = "#ffffff";
+      close.style.cursor = "pointer";
+      close.style.zIndex = "15";
+      close.innerText = "Cerrar";
+      close.addEventListener("click", () => {
+        if (
+          experienceCanvas.current !== null &&
+          experienceContainer.current !== null
+        ) {
+          experienceContainer.current.style.zIndex = "-10";
+          experienceCanvas.current.style.zIndex = "-10";
+          document.body.removeChild(close);
+        }
+      });
+      document.body.appendChild(close);
     }
   };
   const deleteEscapeRoom = () => {
@@ -265,8 +286,12 @@ export default function EscapeRoomLayout({}) {
             ) : (
               ""
             )}
-            <div ref={experienceContainer} className="experience">
-              <canvas className="experience" ref={experienceCanvas}></canvas>
+            <div ref={experienceContainer} className="experience -z-10">
+              <canvas
+                style={{ zIndex: -2 }}
+                className="experience"
+                ref={experienceCanvas}
+              ></canvas>
             </div>
             {id !== "nuevo" ? (
               <div className="flex space-x-2">

@@ -39,12 +39,10 @@ export default class Renderer {
       );
       intercept.forEach((inter) => {
         if (inter.object.name.includes("PadLock")) {
-          this.selected.push(inter.object);
-          console.log(this.selected);
+          console.log(inter.object.name);
         }
       });
     }
     this.renderer.render(this.scene, this.camera.perspectiveCamera);
-    this.selected = [];
   }
 }
