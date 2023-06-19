@@ -15,7 +15,7 @@ import { ToastContext } from "@/providers/ToastProvider";
 import { useContext, useState } from "react";
 import StepperLabels from "@/components/Stepper/StepperLabel";
 
-const steps = ["General", "Configuración", "Presentación", "Recursos"];
+const steps = ["General", "Configuración", "Presentación"];
 
 export default function EscapeRoomLayout({}) {
   const [activeStep, setActiveStep] = React.useState(0);
@@ -244,15 +244,19 @@ export default function EscapeRoomLayout({}) {
             <Button onClick={handleNext} sx={{ mr: 1 }}>
               Next
             </Button>
-            {allStepsCompleted() && id === "nuevo" ? (
-              <Button onClick={create}>Crear</Button>
+            {id === "nuevo" ? <Button onClick={create}>Crear</Button> : ""}
+            {allStepsCompleted() && id !== "nuevo" ? (
+              <Button onClick={update} sx={{ mr: 1 }}>
+                Actualizar
+              </Button>
             ) : (
               ""
             )}
-            {allStepsCompleted() && id !== "nuevo" ? (
+            {id !== "nuevo" ? (
               <div className="flex space-x-2">
-                <Button onClick={update}>Actualizar</Button>
-                <Button onClick={deleteEscapeRoom}>Delete</Button>
+                <Button onClick={deleteEscapeRoom} sx={{ mr: 1 }}>
+                  Delete
+                </Button>
               </div>
             ) : (
               ""
