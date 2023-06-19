@@ -27,6 +27,7 @@ export class Service {
     return fetch(this.URL + url, {
       method: "DELETE",
       headers: {
+        authorization: `Bearer ${Cookies.get("token")}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(body),

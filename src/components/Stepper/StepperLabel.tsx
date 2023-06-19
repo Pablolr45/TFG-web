@@ -74,11 +74,6 @@ export default function StepperLabels({
           Presentación
         </StepButton>
       </Step>
-      <Step completed={true}>
-        <StepButton color="inherit" onClick={handleStep(3)}>
-          Recursos
-        </StepButton>
-      </Step>
     </Stepper>
   );
 }

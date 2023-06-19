@@ -9,7 +9,6 @@ interface EscapeRoom {
   restaPistas: number;
   presentacionInicial: PresentacionInicial;
   presentacionFinal: PresentacionFinal;
-  recursos: Array<any>;
 }
 interface PresentacionInicial {
   tipo: "imagen" | "video";
@@ -18,10 +17,3 @@ interface PresentacionInicial {
 
 interface PresentacionFinal extends PresentacionInicial {}
 
-interface Recurso {
-  type: string
-}
-type BlocNotas = "BLOCNOTAS";
-interface Linterna extends Recurso {
-  type: "LINTERNA"
-}
