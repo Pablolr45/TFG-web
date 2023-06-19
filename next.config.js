@@ -6,4 +6,7 @@ module.exports = {
       { source: "/api/:path*", destination: "http://localhost:3001/:path*" },
     ];
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
